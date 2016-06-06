@@ -1,0 +1,23 @@
+body {
+  background: #f1f1f1;
+  margin: 0;
+}
+
+.wrap {
+  max-width: 700px;
+  margin: 250px auto 0;
+}
+
+.copyright {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.copyright a {
+  color: #235F9C;
+}
+
+.copyright a:hover {
+  color: #102c49;
+}
