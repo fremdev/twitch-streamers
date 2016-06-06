@@ -1,33 +1,40 @@
 $(document).ready(function() {
 
-  var streamers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+  var streamers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "comster404"];
   var streamersData = {};
   streamers.forEach(function(streamer) {
     getChannelInfo(streamer);
   });
 
   function getChannelInfo(streamer) {
-    var channelUrl = createUrl(streamer, 'channels');
-      $.getJSON(channelUrl, function(channelInfo) {
-        streamersData[streamer] = {};
-        streamersData[streamer].logo = channelInfo.logo;
-        streamersData[streamer].name = channelInfo.display_name;
-
-        var streamsUrl = createUrl(streamer, 'streams');
-        $.getJSON(streamsUrl, function(streamsInfo) {
-          if(streamsInfo.stream === null) {
-            streamersData[streamer].online = false;
+    var streamsUrl = createUrl(streamer, 'streams');
+    $.getJSON(streamsUrl, function(streamsInfo) {
+      streamersData[streamer] = {};
+      if(streamsInfo.stream === undefined) {
+        streamersData[streamer].status = "Account closed";
+      }
+      else if(streamsInfo.stream === null) {
+        streamersData[streamer].status = "Offline";
+      }
+      else {
+        streamersData[streamer].status = "Online";
+        streamersData[streamer].description = streamsInfo.stream.channel.status;
+        streamersData[streamer].game = streamsInfo.stream.game;
+        streamersData[streamer].viewers = streamsInfo.stream.viewers;
+      }
+      var channelUrl = createUrl(streamer, 'channels');
+        $.getJSON(channelUrl, function(channelInfo) {
+          if(streamersData[streamer].status === "Account closed") {
+            streamersData[streamer].logo = null;
+            streamersData[streamer].name = streamer;
           }
           else {
-            streamersData[streamer].online = true;
-            streamersData[streamer].status = streamsInfo.stream.channel.status;
-            streamersData[streamer].game = streamsInfo.stream.game;
-            streamersData[streamer].viewers = streamsInfo.stream.viewers;
+            streamersData[streamer].logo = channelInfo.logo;
+            streamersData[streamer].name = channelInfo.display_name;
           }
-          // console.log(streamersData.freecodecamp);
           createMarkup(streamersData[streamer]);
         });
-      });
+    });
   }
 
   function createUrl(streamer, content) {
@@ -50,19 +57,15 @@ $(document).ready(function() {
     html += '"></div><div class="name">';
     html += streamer.name;
     html += '</div>';
-    if(streamer.online) {
+    if(streamer.status === "Online") {
       connect = "online";
       html += '<div class="status">Online</div>';
     }
     else {
-      connect = "offline";
       html += '<div class="status">Offline</div>';
     }
 
     html += '</div>';
     $('#streamers').append(html);
   }
-
-
-
 });
