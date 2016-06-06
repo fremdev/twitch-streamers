@@ -6,7 +6,6 @@ $(document).ready(function() {
     getChannelInfo(streamer);
   });
 
-
   function getChannelInfo(streamer) {
     var channelUrl = createUrl(streamer, 'channels');
       $.getJSON(channelUrl, function(channelInfo) {
@@ -25,8 +24,8 @@ $(document).ready(function() {
             streamersData[streamer].game = streamsInfo.stream.game;
             streamersData[streamer].viewers = streamsInfo.stream.viewers;
           }
-          console.log(streamersData);
-          // createMarkup(streamersData);
+          // console.log(streamersData.freecodecamp);
+          createMarkup(streamersData[streamer]);
         });
       });
   }
@@ -37,6 +36,33 @@ $(document).ready(function() {
     apiUrl += '/' + streamer + '?callback=?';
     return apiUrl;
   }
+
+  function createMarkup(streamer) {
+    var html = '';
+    var connect = '';
+    html += '<div class="streamer ' + connect + '"><div class="logo"><img src="';
+    if(streamer.logo !== null) {
+      html += streamer.logo;
+    }
+    else {
+      html += 'http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a';
+    }
+    html += '"></div><div class="name">';
+    html += streamer.name;
+    html += '</div>';
+    if(streamer.online) {
+      connect = "online";
+      html += '<div class="status">Online</div>';
+    }
+    else {
+      connect = "offline";
+      html += '<div class="status">Offline</div>';
+    }
+
+    html += '</div>';
+    $('#streamers').append(html);
+  }
+
 
 
 });
