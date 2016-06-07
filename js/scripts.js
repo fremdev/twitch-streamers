@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   var streamers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "comster404"];
   var streamersData = {};
+
   streamers.forEach(function(streamer) {
     getChannelInfo(streamer);
   });
@@ -46,26 +47,33 @@ $(document).ready(function() {
 
   function createMarkup(streamer) {
     var html = '';
-    var connect = '';
-    html += '<div class="streamer ' + connect + '"><div class="logo"><img src="';
+    var connect, logo, status;
+
     if(streamer.logo !== null) {
-      html += streamer.logo;
+      logo = streamer.logo;
     }
     else {
-      html += 'http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a';
-    }
-    html += '"></div><div class="name">';
-    html += streamer.name;
-    html += '</div>';
-    if(streamer.status === "Online") {
-      connect = "online";
-      html += '<div class="status">Online</div>';
-    }
-    else {
-      html += '<div class="status">Offline</div>';
+      logo = 'http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a';
     }
 
+    if(streamer.status === "Online") {
+      connect = "online";
+      status = '<div class="indicator">On</div><div class="viewers">' + streamer.viewers + '</div><div class="description">'+ streamer.game + ': ' + streamer.description  +'</div>';
+    }
+    else if(streamer.status === "Offline"){
+      connect = "offline"
+      status = streamer.status;
+    }
+    else {
+      connect = "closed";
+      status = streamer.status;
+    }
+
+    html += '<div class="streamer ' + connect + '"><div class="logo"><img src="' + logo;
+    html += '"></div><div class="name">' + streamer.name + '</div>';
+    html += '<div class="status">' + status + '</div>';
     html += '</div>';
+    
     $('#streamers').append(html);
   }
 });
