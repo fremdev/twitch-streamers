@@ -4,9 +4,57 @@ body {
 }
 
 .wrap {
-  max-width: 700px;
-  margin: 250px auto 0;
+  max-width: 800px;
+  margin: 0 auto;
 }
+
+.streamer {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.logo img {
+  min-width: 50px;
+  max-width: 100%;
+  height: auto;
+  margin: 10px;
+}
+
+.logo {
+  flex: 0 1 100px;
+}
+
+.name {
+  flex: 0 1 150px;
+}
+
+.status {
+  flex: 0 5 550px;
+}
+
+.description {
+  flex: 1 auto;
+}
+
+.online .status {
+  display: flex;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.online {
+  background-color: green;
+}
+
+.offline {
+  background-color: #888;
+}
+
 
 .copyright {
   font-size: 14px;

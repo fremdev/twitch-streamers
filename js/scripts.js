@@ -58,7 +58,7 @@ $(document).ready(function() {
 
     if(streamer.status === "Online") {
       connect = "online";
-      status = '<div class="indicator">On</div><div class="viewers">' + streamer.viewers + '</div><div class="description">'+ streamer.game + ': ' + streamer.description  +'</div>';
+      status = '<div class="info"><span class="indicator">Online</span><span class="viewers">' + streamer.viewers + '</span></div><div class="description">'+ streamer.game + '<span class="descr-extend">: ' + streamer.description  +'</span></div>';
     }
     else if(streamer.status === "Offline"){
       connect = "offline"
@@ -73,7 +73,7 @@ $(document).ready(function() {
     html += '"></div><div class="name">' + streamer.name + '</div>';
     html += '<div class="status">' + status + '</div>';
     html += '</div>';
-    
+
     $('#streamers').append(html);
   }
 });
