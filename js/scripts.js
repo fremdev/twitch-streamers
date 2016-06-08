@@ -58,20 +58,21 @@ $(document).ready(function() {
 
     if(streamer.status === "Online") {
       connect = "online";
-      status = '<div class="info"><span class="indicator">Online</span><span class="viewers">' + streamer.viewers + '</span></div><div class="description">'+ streamer.game + '<span class="descr-extend">: ' + streamer.description  +'</span></div>';
-    }
-    else if(streamer.status === "Offline"){
-      connect = "offline"
-      status = streamer.status;
+      status = '<div class="info"><span class="status"><span class="indicator"></span><span>Online</span></span><span class="viewers">' + streamer.viewers + '</span></div><div class="description">'+ streamer.game + '<span class="descr-extend">: ' + streamer.description  +'</span></div>';
     }
     else {
-      connect = "closed";
-      status = streamer.status;
+      if(streamer.status === "Offline"){
+        connect = "offline";
+      }
+      else if(streamer.status === "Account closed") {
+        connect = "closed";
+      }
+      status = '<span class="status"><span class="indicator"></span><span>'+ streamer.status +'</span></span>';
     }
 
-    html += '<div class="streamer ' + connect + '"><div class="logo"><img src="' + logo;
-    html += '"></div><div class="name">' + streamer.name + '</div>';
-    html += '<div class="status">' + status + '</div>';
+    html += '<div class="streamer ' + connect + '"><a href="https://www.twitch.tv/'+ streamer.name.toLowerCase() + '"><div class="logo"><img src="' + logo;
+    html += '"></div><div class="name">' + streamer.name + '</a></div>';
+    html += '<div class="status-block">' + status + '</div>';
     html += '</div>';
 
     $('#streamers').append(html);
