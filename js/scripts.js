@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var streamers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "comster404"];
+  var streamers = ["comster404", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "ESL_SC2"];
   var streamersData = {};
 
   streamers.forEach(function(streamer) {
@@ -80,6 +80,15 @@ $(document).ready(function() {
     html += '<div class="status-block">' + status + '</div>';
     html += '</div>';
 
-    $('#streamers').append(html);
+    if(connect === "online") {
+      $('#online').append(html);
+    }
+    else if(connect === "offline") {
+      $('#offline').append(html);
+    }
+    else {
+      $('#closed').append(html);
+    }
+
   }
 });
