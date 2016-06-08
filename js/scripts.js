@@ -47,7 +47,10 @@ $(document).ready(function() {
 
   function createMarkup(streamer) {
     var html = '';
-    var connect, logo, status;
+    var connect, logo, status, linkStart, linkEnd;
+
+    linkStart = '<a href="https://www.twitch.tv/'+ streamer.name.toLowerCase() + '">';
+    linkEnd = '</a>';
 
     if(streamer.logo !== null) {
       logo = streamer.logo;
@@ -66,12 +69,14 @@ $(document).ready(function() {
       }
       else if(streamer.status === "Account closed") {
         connect = "closed";
+        linkStart = "";
+        linkEnd = "";
       }
       status = '<span class="status"><span class="indicator"></span><span>'+ streamer.status +'</span></span>';
     }
 
-    html += '<div class="streamer ' + connect + '"><a href="https://www.twitch.tv/'+ streamer.name.toLowerCase() + '"><div class="logo"><img src="' + logo;
-    html += '"></div><div class="name">' + streamer.name + '</a></div>';
+    html += '<div class="streamer ' + connect + '">' + linkStart + '<div class="logo"><img src="' + logo;
+    html += '"></div><div class="name">' + streamer.name + linkEnd + '</div>';
     html += '<div class="status-block">' + status + '</div>';
     html += '</div>';
 
