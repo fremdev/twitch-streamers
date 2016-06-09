@@ -205,9 +205,6 @@ Media queries
     display: none;
   }
 
-  /*.logo {
-    flex: 0 1 50px;
-  }*/
   .description {
     flex: 0 1 auto;
   }
