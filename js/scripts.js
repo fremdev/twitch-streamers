@@ -89,6 +89,31 @@ $(document).ready(function() {
     else {
       $('#closed').append(html);
     }
+  }
 
+  $('#btn-online').on('click', function() {
+    showStreamers('online');
+  });
+
+  $('#btn-offline').on('click', function() {
+    showStreamers('offline');
+  });
+
+  $('#btn-closed').on('click', function() {
+    showStreamers('closed');
+  });
+
+  $('#btn-all').on('click', function() {
+    $('.streamers div').removeClass('hide');
+  })
+
+  function showStreamers(target) {
+    $('#' + target).removeClass('hide');
+    var targets = ['online', 'offline', 'closed'];
+    targets.forEach(function(value) {
+      if (target !== value) {
+        $('#' + value).addClass('hide');
+      }
+    });
   }
 });
