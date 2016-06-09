@@ -61,7 +61,7 @@ $(document).ready(function() {
 
     if(streamer.status === "Online") {
       connect = "online";
-      status = '<div class="info"><span class="status"><span class="indicator"></span><span>Online</span></span><span class="viewers"><i class="icon-users-1"></i>' + streamer.viewers + '</span></div><div class="description">'+ streamer.game + '<span class="descr-extend">: ' + streamer.description  +'</span></div>';
+      status = '<div class="info"><span class="status"><span class="indicator"></span><span>Online</span></span><span class="viewers"><i class="icon-eye"></i>' + streamer.viewers + '</span></div><div class="description">'+ streamer.game + '<span class="descr-extend">: ' + streamer.description  +'</span></div>';
     }
     else {
       if(streamer.status === "Offline"){
