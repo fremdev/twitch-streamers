@@ -52,12 +52,7 @@ $(document).ready(function() {
     linkStart = '<a href="https://www.twitch.tv/'+ streamer.name.toLowerCase() + '">';
     linkEnd = '</a>';
 
-    if(streamer.logo !== null) {
-      logo = streamer.logo;
-    }
-    else {
-      logo = 'http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a';
-    }
+    logo = checkLogo(streamer.logo);
 
     if(streamer.status === "Online") {
       connect = "online";
@@ -80,10 +75,25 @@ $(document).ready(function() {
     html += '<div class="status-block">' + status + '</div>';
     html += '</div>';
 
-    if(connect === "online") {
+    appendHtml(connect, html);
+  }
+
+  function checkLogo(currentLogo) {
+    var logo;
+    if(currentLogo !== null) {
+      logo = currentLogo;
+    }
+    else {
+      logo = './img/question.png';
+    }
+    return logo;
+  }
+
+  function appendHtml(status, html) {
+    if(status === "online") {
       $('#online').append(html);
     }
-    else if(connect === "offline") {
+    else if(status === "offline") {
       $('#offline').append(html);
     }
     else {
