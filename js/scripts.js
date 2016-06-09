@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var streamers = ["comster404", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "ESL_SC2"];
+  var streamers = ["comster404", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "brunofin", "RobotCaleb", "noobs2ninjas", "ESL_SC2", "uldtot", "puchmi"];
   var streamersData = {};
 
   streamers.forEach(function(streamer) {
@@ -12,20 +12,20 @@ $(document).ready(function() {
     $.getJSON(streamsUrl, function(streamsInfo) {
       streamersData[streamer] = {};
       if(streamsInfo.stream === undefined) {
-        streamersData[streamer].status = "Account closed";
+        streamersData[streamer].status = 'Account closed';
       }
       else if(streamsInfo.stream === null) {
-        streamersData[streamer].status = "Offline";
+        streamersData[streamer].status = 'Offline';
       }
       else {
-        streamersData[streamer].status = "Online";
+        streamersData[streamer].status = 'Online';
         streamersData[streamer].description = streamsInfo.stream.channel.status;
         streamersData[streamer].game = streamsInfo.stream.game;
         streamersData[streamer].viewers = streamsInfo.stream.viewers;
       }
       var channelUrl = createUrl(streamer, 'channels');
         $.getJSON(channelUrl, function(channelInfo) {
-          if(streamersData[streamer].status === "Account closed") {
+          if(streamersData[streamer].status === 'Account closed') {
             streamersData[streamer].logo = null;
             streamersData[streamer].name = streamer;
           }
@@ -54,18 +54,18 @@ $(document).ready(function() {
 
     logo = checkLogo(streamer.logo);
 
-    if(streamer.status === "Online") {
-      connect = "online";
+    if(streamer.status === 'Online') {
+      connect = 'online';
       status = '<div class="info"><span class="status"><span class="indicator"></span><span>Online</span></span><span class="viewers"><i class="icon-eye"></i>' + streamer.viewers + '</span></div><div class="description">'+ streamer.game + '<span class="descr-extend">: ' + streamer.description  +'</span></div>';
     }
     else {
-      if(streamer.status === "Offline"){
-        connect = "offline";
+      if(streamer.status === 'Offline'){
+        connect = 'offline';
       }
       else if(streamer.status === "Account closed") {
-        connect = "closed";
-        linkStart = "";
-        linkEnd = "";
+        connect = 'closed';
+        linkStart = '<a>';
+        linkEnd = '</a>';
       }
       status = '<span class="status"><span class="indicator"></span><span>'+ streamer.status +'</span></span>';
     }
@@ -90,10 +90,10 @@ $(document).ready(function() {
   }
 
   function appendHtml(status, html) {
-    if(status === "online") {
+    if(status === 'online') {
       $('#online').append(html);
     }
-    else if(status === "offline") {
+    else if(status === 'offline') {
       $('#offline').append(html);
     }
     else {

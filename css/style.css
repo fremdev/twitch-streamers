@@ -6,14 +6,17 @@ body {
   background: #f1f1f1;
   margin: 0;
   color: #fff;
+  font-family: 'PT Sans', sans-serif;
 }
 
 a {
   color: #fff;
+  text-decoration: none;
 }
 
 .wrap {
-  max-width: 800px;
+  max-width: 825px;
+  min-width: 275px;
   margin: 0 auto;
 }
 
@@ -34,10 +37,14 @@ Header
 **************/
 
 h1 {
+  font-family: 'Domine', serif;
   background: #3BAEA0;
   margin: 0;
   text-align: center;
   padding: 20px;
+  text-shadow: -1px -1px 1px #555,
+	  	         -2px -2px 1px #666;
+  font-size: 52px;
 }
 
 /*************
@@ -49,10 +56,13 @@ Buttons
 }
 
 .btn {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 16px;
   flex: 1 1 auto;
   padding: 10px;
   background: #118A7E;
   color: #fff;
+  border: ridge #6DF1CC 4px;
 }
 
 .btn:hover {
@@ -63,6 +73,7 @@ Buttons
 .btn.active {
   background: #FCBAD3;
   color: #625772;
+  border: ridge #FF9999 4px;
 }
 
 /*************
@@ -86,6 +97,14 @@ Logo and name
   width: 150px;
 }
 
+#offline .logo img, #closed .logo img {
+  width: 40px;
+}
+
+#offline .streamer, #closed .streamer {
+  height: 55px;
+}
+
 /**********************
 Status and description
 **********************/
@@ -103,7 +122,7 @@ Status and description
 
 .online .status-block {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .description {
@@ -122,6 +141,8 @@ Status and description
   border-radius: 5px;
   display: inline-block;
   margin-right: 5px;
+  min-width: 10px;
+  border: 1px solid #52616B;
 }
 
 .online {
@@ -135,15 +156,16 @@ Status and description
 }
 
 .online .indicator {
-  background-color: green;
+  background-color: #00B906;
 }
 
 .offline .indicator {
-  background-color: red;
+  background-color: #DA1212;
 }
 
 .closed .indicator {
   background-color: #222;
+  border: solid 1px #aaa;
 }
 
 .offline {
@@ -182,9 +204,9 @@ Media queries
     display: none;
   }
 
-  .logo {
+  /*.logo {
     flex: 0 1 50px;
-  }
+  }*/
   .description {
     flex: 0 1 auto;
   }
