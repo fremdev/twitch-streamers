@@ -114,10 +114,15 @@ $(document).ready(function() {
   });
 
   $('#btn-all').on('click', function() {
+    $('.btn').removeClass('active');
+    $('#btn-all').addClass('active');
     $('.streamers div').removeClass('hide');
   })
 
   function showStreamers(target) {
+    $('.btn').removeClass('active');
+    $('#btn-' + target).addClass('active');
+
     $('#' + target).removeClass('hide');
     var targets = ['online', 'offline', 'closed'];
     targets.forEach(function(value) {

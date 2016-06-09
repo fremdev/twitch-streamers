@@ -5,6 +5,11 @@ General
 body {
   background: #f1f1f1;
   margin: 0;
+  color: #fff;
+}
+
+a {
+  color: #fff;
 }
 
 .wrap {
@@ -17,10 +22,47 @@ body {
   align-items: center;
   text-align: center;
   height: 75px;
+  border-bottom: solid 1px #C9D6DF;
 }
 
 .hide {
   display: none;
+}
+
+/*************
+Header
+**************/
+
+h1 {
+  background: #3BAEA0;
+  margin: 0;
+  text-align: center;
+  padding: 20px;
+}
+
+/*************
+Buttons
+**************/
+
+.buttons {
+  display: flex;
+}
+
+.btn {
+  flex: 1 1 auto;
+  padding: 10px;
+  background: #118A7E;
+  color: #fff;
+}
+
+.btn:hover {
+  background-color: #6DF1CC;
+  color: #102c49;
+}
+
+.btn.active {
+  background: #FCBAD3;
+  color: #625772;
 }
 
 /*************
@@ -30,7 +72,10 @@ Logo and name
 .logo img {
   width: 60px;
   margin: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
+  padding:2px;
+  border:1px solid #1E2022;
+  background-color:#fff;
 }
 
 .logo {
@@ -80,7 +125,13 @@ Status and description
 }
 
 .online {
-  background-color: #cfc;
+  background-color: #93E4C1;
+  color: #52616B;
+  border-bottom: solid 1px #F0F5F9;
+}
+
+.online a {
+  color: #52616B;
 }
 
 .online .indicator {
@@ -96,11 +147,11 @@ Status and description
 }
 
 .offline {
-  background-color: #ddf;
+  background-color: #3BAEA0;
 }
 
 .closed {
-  background-color: #ccc;
+  background-color: #52616B;
 }
 
 /**********************
@@ -110,15 +161,16 @@ Copyright
 .copyright {
   font-size: 14px;
   text-align: center;
-  margin-bottom: 30px;
+  margin-top: 30px;
+  color: #1E2022;
 }
 
 .copyright a {
-  color: #235F9C;
+  color: #1F6F78;
 }
 
 .copyright a:hover {
-  color: #102c49;
+  color: #93E4C1;
 }
 
 /**********************
